@@ -42,6 +42,7 @@
 		B39575F5284F29E20080B4FF /* Roxas.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B39575F4284F29E20080B4FF /* Roxas.framework */; };
 		B39F16132918D7C5002E9404 /* Consts.swift in Sources */ = {isa = PBXBuildFile; fileRef = B39F16122918D7C5002E9404 /* Consts.swift */; };
 		B39F16152918D7DA002E9404 /* Consts+Proxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = B39F16142918D7DA002E9404 /* Consts+Proxy.swift */; };
+		B3C053B7295F921E0079DB81 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3C053B6295F921E0079DB81 /* NetworkService.swift */; };
 		B3C395F1284F2DE700DA9E2F /* KeychainAccess in Frameworks */ = {isa = PBXBuildFile; productRef = B3C395F0284F2DE700DA9E2F /* KeychainAccess */; };
 		B3C395F4284F35DD00DA9E2F /* Nuke in Frameworks */ = {isa = PBXBuildFile; productRef = B3C395F3284F35DD00DA9E2F /* Nuke */; };
 		B3C395F7284F362400DA9E2F /* AppCenterAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = B3C395F6284F362400DA9E2F /* AppCenterAnalytics */; };
@@ -532,6 +533,7 @@
 		B39575F4284F29E20080B4FF /* Roxas.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Roxas.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B39F16122918D7C5002E9404 /* Consts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Consts.swift; sourceTree = "<group>"; };
 		B39F16142918D7DA002E9404 /* Consts+Proxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Consts+Proxy.swift"; sourceTree = "<group>"; };
+		B3C053B6295F921E0079DB81 /* NetworkService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		B3C39606284F4C8400DA9E2F /* CodeSigning.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = CodeSigning.xcconfig; sourceTree = "<group>"; };
 		B3C39607284F4C8400DA9E2F /* Build.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Build.xcconfig; sourceTree = "<group>"; };
 		B3C39608284F4C8400DA9E2F /* CodeSigning.xcconfig.sample */ = {isa = PBXFileReference; lastKnownFileType = text; path = CodeSigning.xcconfig.sample; sourceTree = "<group>"; };
@@ -1022,6 +1024,14 @@
 				B39F16142918D7DA002E9404 /* Consts+Proxy.swift */,
 			);
 			path = Consts;
+			sourceTree = "<group>";
+		};
+		B3C053B5295F921E0079DB81 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				B3C053B6295F921E0079DB81 /* NetworkService.swift */,
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 		BF0DCA642433BDE200E3A595 /* Analytics */ = {
@@ -1558,6 +1568,7 @@
 				BF3D648922E79A7700E9056B /* Types */,
 				BFD2479D2284FBBD00981D42 /* Extensions */,
 				BFD247962284D7C100981D42 /* Resources */,
+				B3C053B5295F921E0079DB81 /* Services */,
 				BF6C8FA8242935CA00125131 /* Dependencies */,
 				BFD247972284D7D800981D42 /* Supporting Files */,
 				1920B04E2924AC8300744F60 /* Settings.bundle */,
@@ -2468,6 +2479,7 @@
 				BF88F97224F8727D00BB75DF /* AppManagerErrors.swift in Sources */,
 				B39F16152918D7DA002E9404 /* Consts+Proxy.swift in Sources */,
 				BF6C8FAE2429597900125131 /* BannerCollectionViewCell.swift in Sources */,
+				B3C053B7295F921E0079DB81 /* NetworkService.swift in Sources */,
 				BF6F439223644C6E00A0B879 /* RefreshAltStoreViewController.swift in Sources */,
 				BFE60742231B07E6002B0E8E /* SettingsHeaderFooterView.swift in Sources */,
 				BFE338E822F10E56002E24B9 /* LaunchViewController.swift in Sources */,

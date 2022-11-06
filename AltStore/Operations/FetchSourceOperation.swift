@@ -18,7 +18,7 @@ class FetchSourceOperation: ResultOperation<Source>
     let sourceURL: URL
     let managedObjectContext: NSManagedObjectContext
     
-    private let session: URLSession
+    private let session: URLSession = AppServices.network.sessionNoCache
     
     private lazy var dateFormatter: ISO8601DateFormatter = {
         let dateFormatter = ISO8601DateFormatter()
@@ -29,12 +29,6 @@ class FetchSourceOperation: ResultOperation<Source>
     {
         self.sourceURL = sourceURL
         self.managedObjectContext = managedObjectContext
-        
-        let configuration = URLSessionConfiguration.default
-        configuration.requestCachePolicy = .reloadIgnoringLocalCacheData
-        configuration.urlCache = nil
-        
-        self.session = URLSession(configuration: configuration)
     }
     
     override func main()

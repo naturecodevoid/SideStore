@@ -754,7 +754,7 @@ private extension MyAppsViewController
         {
             let downloadProgress = Progress.discreteProgress(totalUnitCount: 100)
             downloadOperation = RSTAsyncBlockOperation { (operation) in
-                let downloadTask = URLSession.shared.downloadTask(with: url) { (fileURL, response, error) in
+                let downloadTask = AppServices.network.session.downloadTask(with: url) { (fileURL, response, error) in
                     do
                     {
                         let (fileURL, _) = try Result((fileURL, response), error).get()

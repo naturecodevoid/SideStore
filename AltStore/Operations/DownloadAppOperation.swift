@@ -39,8 +39,8 @@ class DownloadAppOperation: ResultOperation<ALTApplication>
     private var sourceURL: URL?
     private let destinationURL: URL
     
-    private let session = URLSession(configuration: .default)
-    private let temporaryDirectory = FileManager.default.uniqueTemporaryURL()
+    private let session: URLSession = AppServices.network.backgroundSession
+    private let temporaryDirectory: URL = FileManager.default.uniqueTemporaryURL()
     
     init(app: AppProtocol, destinationURL: URL, context: AppOperationContext)
     {
