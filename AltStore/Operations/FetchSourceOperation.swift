@@ -135,7 +135,7 @@ class FetchSourceOperation: ResultOperation<Source>
                 
                 decoder.managedObjectContext = childContext
                 // Note: This may need to be response.url instead, to handle redirects @JoeMatt
-                decoder.sourceURL = self.sourceURL
+                decoder.sourceURL = response?.url ?? self.sourceURL
                 
                 let source = try decoder.decode(Source.self, from: data)
                 let identifier = source.identifier
