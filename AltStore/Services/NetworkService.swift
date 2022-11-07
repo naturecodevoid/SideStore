@@ -24,7 +24,11 @@ public struct DefaultServices: Services {
 
 let AppServices = DefaultServices()
 
-final public class AltNetworkDelegate: NSObject, URLSessionTaskDelegate {
+final public class AltNetworkDelegate: NSObject, URLSessionDelegate, URLSessionTaskDelegate  {
+    public override init() {
+        super.init()
+    }
+    
     public struct Options: OptionSet {
         public let rawValue: Int
         public init(rawValue: Int) {
@@ -37,7 +41,7 @@ final public class AltNetworkDelegate: NSObject, URLSessionTaskDelegate {
     
     var options: Options = .all
     
-//    func urlSession(_ session: URLSession, task: URLSessionTask, willPerformHTTPRedirection response: HTTPURLResponse, newRequest request: URLRequest, completionHandler: @escaping (URLRequest?) -> Void) {
+//    public func urlSession(_ session: URLSession, task: URLSessionTask, willPerformHTTPRedirection response: HTTPURLResponse, newRequest request: URLRequest, completionHandler: @escaping (URLRequest?) -> Void) {
 //        if options.contains(.redirect) {
 //            completionHandler(request)
 //        } else {
@@ -55,27 +59,36 @@ final public class AltNetworkDelegate: NSObject, URLSessionTaskDelegate {
 }
 
 public final class AltNetworkService: NetworkService {
-    public let session: URLSession = {
+    let delegate = AltNetworkDelegate()
+    
+    lazy var delegateQueue: OperationQueue = {
+        let queue = OperationQueue.init()
+        queue.name = "com.sidestore.NetworkService.serialOperationQueue"
+        queue.maxConcurrentOperationCount = 1
+        return queue
+    }()
+    
+    public lazy var session: URLSession = {
         let configuration: URLSessionConfiguration = URLSessionConfiguration.default
         configuration.httpShouldSetCookies = true
         configuration.httpShouldUsePipelining = true
-        let session = URLSession.init(configuration: configuration, delegate: AltNetworkDelegate(), delegateQueue: nil)
+        let session = URLSession.init(configuration: configuration, delegate: delegate, delegateQueue: delegateQueue)
         return session
     }()
     
-    public let sessionNoCache: URLSession = {
+    public lazy var sessionNoCache: URLSession = {
         let configuration: URLSessionConfiguration = URLSessionConfiguration.default
         configuration.requestCachePolicy = .reloadIgnoringLocalCacheData
-        configuration.urlCache = nil        
-        let session = URLSession.init(configuration: configuration, delegate: AltNetworkDelegate(), delegateQueue: nil)
+        configuration.urlCache = nil
+        let session = URLSession.init(configuration: configuration, delegate: delegate, delegateQueue: delegateQueue)
         return session
     }()
     
     static let backgroundSessionIdentifier = "SideStoreBackgroundSession"
     
-    public let backgroundSession: URLSession = {
+    public lazy var backgroundSession: URLSession = {
         let configuration: URLSessionConfiguration = URLSessionConfiguration.background(withIdentifier: AltNetworkService.backgroundSessionIdentifier)
-        let session = URLSession.init(configuration: configuration, delegate: AltNetworkDelegate(), delegateQueue: nil)
+        let session = URLSession.init(configuration: configuration, delegate: delegate, delegateQueue: nil)
         return session
     }()
 }
