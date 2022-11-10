@@ -54,7 +54,7 @@ let package = Package(
     ] + devProducts,
     dependencies: [
         .package(url: "https://github.com/danger/swift.git", from: "3.0.0"), // dev
-		.package(url: "https://github.com/JoeMatt/Roxas.git", branch: "swiftpm"),
+		.package(url: "https://github.com/SideStore/Roxas.git", branch: "swiftpm"),
         // Danger Plugins
         // .package(url: "https://github.com/username/DangerPlugin.git", from: "0.1.0") // dev
     ],
