@@ -47,6 +47,9 @@ let package = Package(
         // .library(name: "DangerDeps[SideStore]", type: .dynamic, targets: ["DangerDependencies"]), // dev
 		.library(name: "SideStore", targets: ["SideStore", "SideStore-ObjC"]),
 		.library(name: "AltStoreCore", targets: ["AltStoreCore"]),
+		.library(name: "libimobiledevice", targets: ["libimobiledevice"]),
+		.library(name: "EmotionalDamage", targets: ["EmotionalDamage"]),
+		.library(name: "minimuxer", targets: ["minimuxer"]),
     ],
         .library(name: "Danger", targets: ["Danger"]),
         .library(name: "DangerFixtures", targets: ["DangerFixtures"]),
@@ -64,10 +67,46 @@ let package = Package(
     ] + devDependencies,
     targets: [
         // .target(name: "DangerDependencies", dependencies: ["Danger", "DangerPlugin"], path: "Dependencies/Danger"), // dev
-		.target(name: "SideStore", dependencies: ["SideStore-ObjC", "AltStoreCore"], path: "AltStore", exclude: ["Operations/Patch App/ALTAppPatcher.m"]),
-		.target(name: "SideStore-ObjC", dependencies: ["Roxas"], path: "AltStore", sources: ["Operations/Patch App/ALTAppPatcher.m"], publicHeadersPath: "Operations/Patch App/"),
-		.target(name: "AltStoreCore", dependencies: ["AltStoreCore-ObjC"], path: "AltStoreCore", exclude: ["Types/ALTAppPermission.m", "Types/ALTPatreonBenefitType.m", "Types/ALTSourceUserInfoKey.m"]),
-		.target(name: "AltStoreCore-ObjC", dependencies: ["Roxas"], path: "AltStoreCore", sources: ["Types/ALTAppPermission.m", "Types/ALTPatreonBenefitType.m", "Types/ALTSourceUserInfoKey.m"], publicHeadersPath: "Types"),
+		.target(name: "SideStore",
+				dependencies: ["SideStore-ObjC", "AltStoreCore", "EmotionalDamage", "libimobiledevice", "minimuxer", "em_proxy"],
+				path: "AltStore",
+				exclude: ["Operations/Patch App/ALTAppPatcher.m"]),
+
+		.target(name: "SideStore-ObjC",
+				dependencies: ["Roxas"],
+				path: "AltStore",
+				sources: ["Operations/Patch App/ALTAppPatcher.m"],
+				publicHeadersPath: "Operations/Patch App/"),
+
+		.target(name: "AltStoreCore",
+				dependencies: ["AltStoreCore-ObjC"],
+				path: "AltStoreCore",
+				exclude: [
+					"Types/ALTAppPermission.m",
+					"Types/ALTPatreonBenefitType.m",
+					"Types/ALTSourceUserInfoKey.m"
+				]),
+
+		.target(name: "AltStoreCore-ObjC",
+				dependencies: ["Roxas"],
+				path: "AltStoreCore",
+				sources: ["Types/ALTAppPermission.m", "Types/ALTPatreonBenefitType.m", "Types/ALTSourceUserInfoKey.m"],
+				publicHeadersPath: "Types"),
+
+		.target(name: "EmotionalDamage",
+				dependencies: [""],
+				path: "EmotionalDamage"),
+
+		.target(name: "libimobiledevice",
+				dependencies: [""],
+				path: "Dependencies/libimobiledevice/src",
+				publicHeadersPath: "Dependencies/libimobiledevice/include/libimobiledevice"),
+
+		.binaryTarget(	name: "minimuxer",
+						path: "Dependencies/minimuxer/target/release/minimuxer.xcframework"),
+
+		.binaryTarget(	name: "em_proxy",
+						path: "Dependencies/em_proxy/target/release/em_proxy.xcframework"),
 
 		// 	name: "SideStore",
 		// 	// dependencies: [

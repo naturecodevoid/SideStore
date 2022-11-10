@@ -30,7 +30,7 @@
       },
       {
         "package": "Roxas",
-        "repositoryURL": "https://github.com/JoeMatt/Roxas.git",
+        "repositoryURL": "https://github.com/SideStore/Roxas.git",
         "state": {
           "branch": "swiftpm",
           "revision": "fe142efb8b3e0330802aba3f44f508f712c0679f",
