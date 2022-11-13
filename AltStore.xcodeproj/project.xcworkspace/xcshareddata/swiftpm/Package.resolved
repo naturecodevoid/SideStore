@@ -80,6 +80,15 @@
         "branch" : "master",
         "revision" : "10a9150ef32d444af326beba76356ae9af95a3e7"
       }
+    },
+    {
+      "identity" : "wireguard-apple",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/WireGuard/wireguard-apple",
+      "state" : {
+        "branch" : "master",
+        "revision" : "23618f994f17d8ad8f2f65d79b4a1e8a0830b334"
+      }
     }
   ],
   "version" : 2

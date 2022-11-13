@@ -34,3 +34,4 @@ xcuserdata
 
 ## AppCode specific
 .idea/
+/.build
