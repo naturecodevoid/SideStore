@@ -115,6 +115,10 @@ jobs:
           name: SideStore.ipa
           path: SideStore.ipa
 
+      - name: Get version
+        id: version
+        run: echo "version=$(grep MARKETING_VERSION Build.xcconfig | sed -e "s/MARKETING_VERSION = //g")" >> $GITHUB_OUTPUT
+
       - name: Get current date
         id: date
         run: echo "date=$(date -u +'%c')" >> $GITHUB_OUTPUT
@@ -143,3 +147,4 @@ jobs:
             Built at (UTC): `${{ steps.date.outputs.date }}`
             Built at (UTC date): `${{ steps.date_altstore.outputs.date }}`
             Commit SHA: `${{ github.sha }}`
+            SideStore version and build number: `${{ steps.version.outputs.version }}-${{ github.run_number }}`
