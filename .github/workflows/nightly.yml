@@ -1,14 +1,15 @@
-name: Build and Upload SideStore
+name: Nightly SideStore build
 on:
   push:
     branches:
-      - master
       - develop
-  pull_request:
 
 jobs:
   build:
-    name: Build and upload SideStore
+    name: Build and upload SideStore Nightly
+    concurrency:
+      group: ${{ github.ref }}
+      cancel-in-progress: true
     strategy:
       fail-fast: false
       matrix:
