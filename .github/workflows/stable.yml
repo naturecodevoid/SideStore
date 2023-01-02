@@ -128,19 +128,19 @@ jobs:
         id: date_altstore
         run: echo "date=$(date -u +'%Y-%m-%d')" >> $GITHUB_OUTPUT
 
-      - name: Upload to nightly release
+      - name: Upload to new stable release
         if: github.event_name != 'pull_request'
-        uses: IsaacShelton/update-existing-release@v1.3.1
+        uses: softprops/action-gh-release@v1
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          release: ${{ steps.version.outputs.version }}
-          tag: ${{ steps.version.outputs.version }}
+          name: ${{ steps.version.outputs.version }}
+          tag_name: ${{ steps.version.outputs.version }}
           draft: true
           files: SideStore.ipa
           body: |
             ## Changelog
             
-            
+            - TODO
             
             ## Build info
             
