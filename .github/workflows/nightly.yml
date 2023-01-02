@@ -138,6 +138,8 @@ jobs:
             
             If you use the `SideStore (Nightly)` app, it will use the latest nightly build (make sure to update it in "My Apps").
             
+            ## Build Info
+            
             Built at (UTC): `${{ steps.date.outputs.date }}`
             Built at (UTC date): `${{ steps.date_altstore.outputs.date }}`
             Commit SHA: `${{ github.sha }}`
