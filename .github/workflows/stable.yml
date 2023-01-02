@@ -142,7 +142,7 @@ jobs:
             
             - TODO
             
-            ## Build info
+            ## Build Info
             
             Built at (UTC): `${{ steps.date.outputs.date }}`
             Built at (UTC date): `${{ steps.date_altstore.outputs.date }}`
