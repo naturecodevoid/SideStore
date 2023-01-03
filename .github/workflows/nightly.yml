@@ -79,6 +79,9 @@ jobs:
       # - name: Build minimuxer
       #   run: cd Dependencies/minimuxer && cargo build --release --target aarch64-apple-ios
 
+      - name: Add nightly suffix to version
+        run: sed -e '/MARKETING_VERSION = .*/s/$/-nightly/' -i Build.xcconfig
+
       - name: Setup Xcode
         uses: maxim-lobanov/setup-xcode@v1.4.1
         with:
@@ -96,6 +99,9 @@ jobs:
           DEVELOPMENT_TEAM=XYZ0123456 \
           ORG_IDENTIFIER=com.SideStore \
           | xcpretty && exit ${PIPESTATUS[0]}
+
+      - name: Add build number to Info.plist
+        run: defaults write archive.xcarchive/Products/Applications/SideStore.app/Info.plist CFBundleBuildVersion ${{ github.run_number }}
 
       - name: Fakesign app
         run: |
@@ -138,7 +144,9 @@ jobs:
           body: |
             This is an ⚠️ **EXPERIMENTAL** ⚠️ nightly build for commit [${{ github.sha }}](https://github.com/${{ github.repository }}/commit/${{ github.sha }}).
             
-            Nightly builds are built from the most recent commit. However, since they are much newer and less tested, they have a much higher chance of bugs, so **use at your own risk**.
+            Nightly builds are built from the most recent commit which means you'll be able to try out new features very early. However, since these changes are much newer and less tested, they have a much higher chance of bugs, so **use at your own risk**.
+            
+            If you want to try out new features early but want a lower chance of bugs, you can look at [SideStore Beta](https://github.com/${{ github.repository }}/releases/tag/beta).
             
             If you use the `SideStore (Nightly)` app, it will use the latest nightly build (make sure to update it in "My Apps").
             
