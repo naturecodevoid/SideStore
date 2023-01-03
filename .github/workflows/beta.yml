@@ -2,11 +2,12 @@ name: Beta SideStore build
 on:
   push:
     branches:
-      - beta
+      - nightly-release-build
 
 jobs:
   build:
     name: Build and upload SideStore Beta
+    if: startsWith(github.event.head_commit.message, '[beta]')
     concurrency:
       group: ${{ github.ref }}
       cancel-in-progress: true
