@@ -3,7 +3,6 @@ on:
   push:
     tags:
       - '[0-9]+.[0-9]+.[0-9]+*'
-  pull_request:
 
 jobs:
   build:
@@ -114,22 +113,18 @@ jobs:
           path: SideStore.ipa
 
       - name: Get version
-        if: github.event_name != 'pull_request'
         id: version
         run: echo "version=$(grep MARKETING_VERSION Build.xcconfig | sed -e "s/MARKETING_VERSION = //g")" >> $GITHUB_OUTPUT
 
       - name: Get current date
-        if: github.event_name != 'pull_request'
         id: date
         run: echo "date=$(date -u +'%c')" >> $GITHUB_OUTPUT
 
       - name: Get current date in AltStore date form
-        if: github.event_name != 'pull_request'
         id: date_altstore
         run: echo "date=$(date -u +'%Y-%m-%d')" >> $GITHUB_OUTPUT
 
       - name: Upload to new stable release
-        if: github.event_name != 'pull_request'
         uses: softprops/action-gh-release@v1
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
