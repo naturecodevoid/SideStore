@@ -80,7 +80,7 @@ jobs:
       #   run: cd Dependencies/minimuxer && cargo build --release --target aarch64-apple-ios
 
       - name: Add nightly suffix to version
-        run: sed -e '/MARKETING_VERSION = .*/s/$/-nightly/' -i Build.xcconfig
+        run: sed -e '/MARKETING_VERSION = .*/s/$/-nightly.${{ github.run_number }}/' -i Build.xcconfig
 
       - name: Setup Xcode
         uses: maxim-lobanov/setup-xcode@v1.4.1
@@ -99,9 +99,6 @@ jobs:
           DEVELOPMENT_TEAM=XYZ0123456 \
           ORG_IDENTIFIER=com.SideStore \
           | xcpretty && exit ${PIPESTATUS[0]}
-
-      - name: Add build number to Info.plist
-        run: defaults write archive.xcarchive/Products/Applications/SideStore.app/Info.plist CFBundleBuildVersion ${{ github.run_number }}
 
       - name: Fakesign app
         run: |
@@ -155,4 +152,4 @@ jobs:
             Built at (UTC): `${{ steps.date.outputs.date }}`
             Built at (UTC date): `${{ steps.date_altstore.outputs.date }}`
             Commit SHA: `${{ github.sha }}`
-            SideStore version and build number: `${{ steps.version.outputs.version }}-${{ github.run_number }}`
+            Version: `${{ steps.version.outputs.version }}`
