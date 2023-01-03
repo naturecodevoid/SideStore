@@ -142,3 +142,4 @@ jobs:
             Built at (UTC): `${{ steps.date.outputs.date }}`
             Built at (UTC date): `${{ steps.date_altstore.outputs.date }}`
             Commit SHA: `${{ github.sha }}`
+            Version: `${{ steps.version.outputs.version }}`
